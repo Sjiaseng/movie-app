@@ -1,0 +1,86 @@
+Most Used React Hooks:
+
+// Event Handlers
+const handleClick = () => alert('Button clicked!');
+return <button onClick={handleClick}>Click Me</button>;
+
+// State Management
+const [count, setCount] = useState(0);
+const increment = () => setCount(count + 1);
+return (
+  <div>
+    <p>{count}</p>
+    <button onClick={increment}>Increment</button>
+  </div>
+);
+
+// Side Effects (useEffect)
+useEffect(() => {
+  const fetchData = async () => {
+    const response = await fetch('https://api.example.com');
+    const data = await response.json();
+    console.log(data);
+  };
+  fetchData();
+}, []);
+
+// Conditional Rendering
+const renderMessage = () => isLoggedIn ? 'Welcome!' : 'Please log in';
+return <p>{renderMessage()}</p>;
+
+// Form Handling
+const [input, setInput] = useState('');
+const handleChange = (e) => setInput(e.target.value);
+const handleSubmit = (e) => {
+  e.preventDefault();
+  alert(input);
+};
+return (
+  <form onSubmit={handleSubmit}>
+    <input type="text" value={input} onChange={handleChange} />
+    <button type="submit">Submit</button>
+  </form>
+);
+
+// Dynamic Lists
+const items = ['Item 1', 'Item 2', 'Item 3'];
+return <ul>{items.map((item, index) => <li key={index}>{item}</li>)}</ul>;
+
+// Memoization (useMemo)
+const computedValue = useMemo(() => expensiveComputation(num), [num]);
+return <p>{computedValue}</p>;
+
+// Context API
+const ThemeContext = createContext();
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+};
+
+// Refs and DOM Manipulation (useRef)
+const inputRef = useRef(null);
+const focusInput = () => inputRef.current.focus();
+return (
+  <div>
+    <input ref={inputRef} />
+    <button onClick={focusInput}>Focus Input</button>
+  </div>
+);
+
+// Error Boundaries (Class Component)
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    return this.state.hasError ? <h1>Something went wrong</h1> : this.props.children;
+  }
+}
+
+run rafce (auto create function in new page)
